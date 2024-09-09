@@ -6,7 +6,7 @@ class Item {
   final String name;
 
 
-// error was found in test, abbreviation should only be first letter
+// test for this did not pass, abbreviation should only be first letter. Original function returned first 2 letters.
   String abbrev() {
     return name.substring(0, 1);
     //changed (0, 2) -> (0,1)

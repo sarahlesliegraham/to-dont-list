@@ -17,6 +17,7 @@ void main() {
     const item = Item(name: "add more todos");
     expect(item.abbrev(), "a");
   });
+// test did not pass until abbrev method in item was fixed
 
   // Yes, you really need the MaterialApp and Scaffold
   testWidgets('ToDoListItem has a text', (tester) async {

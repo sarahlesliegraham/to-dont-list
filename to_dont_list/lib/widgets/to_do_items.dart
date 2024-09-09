@@ -24,8 +24,8 @@ class ToDoListItem extends StatelessWidget {
     // The BuildContext indicates where the build is
     // taking place and therefore which theme to use.
 
-    return completed //
-        ? Colors.black
+    return completed // returned Colors.black instead of Colors.black54
+        ? Colors.black54
         : Theme.of(context).primaryColor;
   }
 
@@ -51,10 +51,12 @@ class ToDoListItem extends StatelessWidget {
           : null,
       leading: CircleAvatar(
         backgroundColor: _getColor(context),
-        child: Text(item.name),
+        child: Text (item.abbrev()),
+         
+         //title and circle avatar child were switched around
       ),
       title: Text(
-        item.abbrev(),
+        item.name,
         style: _getTextStyle(context),
       ),
     );
