@@ -5,7 +5,10 @@ class Item {
 
   final String name;
 
+
+// error was found in test, abbreviation should only be first letter
   String abbrev() {
-    return name.substring(0, 2);
+    return name.substring(0, 1);
+    //changed (0, 2) -> (0,1)
   }
 }
