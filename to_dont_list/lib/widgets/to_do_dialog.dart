@@ -40,12 +40,13 @@ class _ToDoDialogState extends State<ToDoDialog> {
       ),
       actions: <Widget>[
         ElevatedButton(
-          //Changed OkButton to OKButton to match tester
+          //changed OkButton to OKButton
           key: const Key("OKButton"),
           style: yesStyle,
           child: const Text('OK'),
           onPressed: () {
             setState(() {
+              widget.onListAdded(valueText, _inputController);
               Navigator.pop(context);
             });
           },
@@ -61,7 +62,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
               onPressed: value.text.isNotEmpty
                   ? () {
                       setState(() {
-                        widget.onListAdded(valueText, _inputController);
+                        //widget.onListAdded(valueText, _inputController);
                         Navigator.pop(context);
                       });
                     }
