@@ -46,7 +46,8 @@ class _ToDoListState extends State<ToDoList> {
   void _handleNewItem(String itemText, TextEditingController textController) {
     setState(() {
       print("Adding new item");
-      Item item = const Item(name: "itemText");
+      //edited this to remove constant
+      Item item = Item(name: itemText);
       items.insert(0, item);
       textController.clear();
     });
