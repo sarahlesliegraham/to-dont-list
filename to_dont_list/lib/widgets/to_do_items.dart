@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:to_dont_list/objects/item.dart';
+import 'package:to_dont_list/objects/flora.dart';
 
-typedef ToDoListChangedCallback = Function(Item item, bool completed);
-typedef ToDoListRemovedCallback = Function(Item item);
+typedef ToDoListChangedCallback = Function(Flora item, bool completed);
+typedef ToDoListRemovedCallback = Function(Flora item);
 
 class ToDoListItem extends StatelessWidget {
   ToDoListItem(
@@ -12,7 +12,7 @@ class ToDoListItem extends StatelessWidget {
       required this.onDeleteItem})
       : super(key: ObjectKey(item));
 
-  final Item item;
+  final Flora item;
   final bool completed;
 
   final ToDoListChangedCallback onListChanged;
@@ -51,7 +51,7 @@ class ToDoListItem extends StatelessWidget {
           : null,
       leading: CircleAvatar(
         backgroundColor: _getColor(context),
-        child: Text (item.abbrev()),
+        child: Text (item.getNumLocations()),
          
          //title and circle avatar child were switched around
       ),
