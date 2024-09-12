@@ -42,11 +42,12 @@ class ToDoListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        onListChanged(item, completed);
+        onListChanged(item, false);
+        item.addNumLocation();
       },
       onLongPress: completed
           ? () {
-              onDeleteItem(item);
+              //onDeleteItem(item);
             }
           : null,
       leading: CircleAvatar(
