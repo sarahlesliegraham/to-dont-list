@@ -4,8 +4,9 @@ import 'package:to_dont_list/objects/flora.dart';
 typedef ToDoListChangedCallback = Function(Flora item, bool completed);
 typedef ToDoListRemovedCallback = Function(Flora item);
 
-class ToDoListItem extends StatelessWidget {
-  ToDoListItem(
+
+class FloraListItem extends StatefulWidget {
+  FloraListItem(
       {required this.item,
       required this.completed,
       required this.onListChanged,
@@ -39,26 +40,37 @@ class ToDoListItem extends StatelessWidget {
   }
 
   @override
+  State<FloraListItem> createState() => _FloraListItemState();
+}
+
+class _FloraListItemState extends State<FloraListItem> {
+  
+  @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        onListChanged(item, false);
-        item.addNumLocation();
+        //onListChanged(item, false);
+        //item.addNumLocation();
       },
-      onLongPress: completed
+      onLongPress: widget.completed
           ? () {
               //onDeleteItem(item);
             }
           : null,
-      leading: CircleAvatar(
-        backgroundColor: _getColor(context),
-        child: Text (item.getNumLocations()),
+      leading: ElevatedButton(
+        onPressed:() {
+          setState(() {
+            widget.item.addNumLocation();
+          });
+        },
+        //backgroundColor: _getColor(context),
+        child: Text (widget.item.getNumLocations()),
          
          //title and circle avatar child were switched around
       ),
       title: Text(
-        item.name,
-        style: _getTextStyle(context),
+        widget.item.name,
+        style: widget._getTextStyle(context),
       ),
     );
   }

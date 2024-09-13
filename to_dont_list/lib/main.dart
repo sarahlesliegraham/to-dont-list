@@ -61,7 +61,7 @@ class _ToDoListState extends State<ToDoList> {
         body: ListView(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           children: items.map((item) {
-            return ToDoListItem(
+            return FloraListItem(
               item: item,
               completed: _itemSet.contains(item),
               onListChanged: _handleListChanged,
