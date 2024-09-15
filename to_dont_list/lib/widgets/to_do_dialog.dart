@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 typedef ToDoListAddedCallback = Function(
-    String value, TextEditingController textConroller);
+    String value, String value2, TextEditingController textConroller, TextEditingController textController2);
 
 class ToDoDialog extends StatefulWidget {
   const ToDoDialog({
@@ -18,18 +18,20 @@ class ToDoDialog extends StatefulWidget {
 class _ToDoDialogState extends State<ToDoDialog> {
   // Dialog with text from https://www.appsdeveloperblog.com/alert-dialog-with-a-text-field-in-flutter/
   final TextEditingController _inputController = TextEditingController();
+  final TextEditingController _inputController2 = TextEditingController();
   final ButtonStyle yesStyle = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.green);
   final ButtonStyle noStyle = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.red);
 
   String valueText = "";
+  String valueText2 = "";
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Item To Add'),
-      content: TextField(
+      content: Column( children : [TextField(
         onChanged: (value) {
           setState(() {
             valueText = value;
@@ -38,6 +40,19 @@ class _ToDoDialogState extends State<ToDoDialog> {
         controller: _inputController,
         decoration: const InputDecoration(hintText: "type something here"),
       ),
+      
+      TextField(
+        onChanged: (value2) {
+          setState(() {
+            valueText2 = value2;
+          });
+        },
+        controller: _inputController2,
+        decoration: const InputDecoration(hintText: "type something else here"),
+      ),
+      ]
+      ),
+
       actions: <Widget>[
         ElevatedButton(
           key: const Key("CancelButton"),
@@ -60,7 +75,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
               onPressed: value.text.isNotEmpty
                   ? () {
                       setState(() {
-                        widget.onListAdded(valueText, _inputController);
+                        widget.onListAdded(valueText, valueText2, _inputController, _inputController2);
                         Navigator.pop(context);
                       });
                     }
