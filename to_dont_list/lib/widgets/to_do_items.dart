@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:to_dont_list/objects/flora.dart';
 
+
 typedef ToDoListChangedCallback = Function(Flora item, bool completed);
 typedef ToDoListRemovedCallback = Function(Flora item);
 
 
 class FloraListItem extends StatefulWidget {
   FloraListItem(
-      {required this.item,
+      {required this.flora,
       required this.completed,
       required this.onListChanged,
       required this.onDeleteItem})
-      : super(key: ObjectKey(item));
+      : super(key: ObjectKey(flora));
 
-  final Flora item;
+  final Flora flora;
   final bool completed;
 
   final ToDoListChangedCallback onListChanged;
@@ -60,16 +61,17 @@ class _FloraListItemState extends State<FloraListItem> {
       leading: ElevatedButton(
         onPressed:() {
           setState(() {
-            widget.item.addNumLocation();
+            widget.flora.addNumLocation();
           });
         },
+        style: ElevatedButton.styleFrom(backgroundColor: widget.flora.type.rgbColor),
         //backgroundColor: _getColor(context),
-        child: Text (widget.item.getNumLocations()),
+        child: Text (widget.flora.getNumLocations()),
          
          //title and circle avatar child were switched around
       ),
       title: Text(
-        widget.item.name,
+        widget.flora.name,
         style: widget._getTextStyle(context),
       ),
     );

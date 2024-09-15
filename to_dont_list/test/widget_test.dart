@@ -24,8 +24,8 @@ void main() {
   testWidgets('ToDoListItem has a text', (tester) async {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-            body: ToDoListItem(
-                item: Flora(name: "test"),
+            body: FloraListItem(
+                flora: Flora(name: "test", type: FloraType.weed),
                 completed: true,
                 onListChanged: (Flora item, bool completed) {},
                 onDeleteItem: (Flora item) {}))));
@@ -40,8 +40,8 @@ void main() {
       (tester) async {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-            body: ToDoListItem(
-                item: Flora(name: "test"),
+            body: FloraListItem(
+                flora: Flora(name: "test", type: FloraType.weed),
                 completed: true,
                 onListChanged: (Flora item, bool completed) {},
                 onDeleteItem: (Flora item) {}))));
@@ -61,7 +61,7 @@ void main() {
   testWidgets('Default ToDoList has one item', (tester) async {
     await tester.pumpWidget(const MaterialApp(home: ToDoList()));
 
-    final listItemFinder = find.byType(ToDoListItem);
+    final listItemFinder = find.byType(FloraListItem);
 
     expect(listItemFinder, findsOneWidget);
   });
@@ -83,7 +83,7 @@ void main() {
     await tester.pump();
     expect(find.text("hi"), findsOneWidget);
 
-    final listItemFinder = find.byType(ToDoListItem);
+    final listItemFinder = find.byType(FloraListItem);
 
     expect(listItemFinder, findsNWidgets(2));
   });

@@ -12,7 +12,7 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  final List<Flora> items = [Flora(name: "add more flora")];
+  final List<Flora> items = [Flora(name: "add more flora", type: FloraType.weed)];
   final _itemSet = <Flora>{};
 
   void _handleListChanged(Flora item, bool completed) {
@@ -46,7 +46,7 @@ class _ToDoListState extends State<ToDoList> {
   void _handleNewItem(String itemText, TextEditingController textController) {
     setState(() {
       print("Adding new item");
-      Flora item = Flora(name: itemText);
+      Flora item = Flora(name: itemText, type: FloraType.weed);
       items.insert(0, item);
       textController.clear();
     });
@@ -62,7 +62,7 @@ class _ToDoListState extends State<ToDoList> {
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           children: items.map((item) {
             return FloraListItem(
-              item: item,
+              flora: item,
               completed: _itemSet.contains(item),
               onListChanged: _handleListChanged,
               onDeleteItem: _handleDeleteItem,
