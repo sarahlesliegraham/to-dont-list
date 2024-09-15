@@ -43,10 +43,10 @@ class _ToDoListState extends State<ToDoList> {
     });
   }
 
-  void _handleNewItem(String itemText, TextEditingController textController) {
+  void _handleNewItem(String itemText, FloraType type, TextEditingController textController) {
     setState(() {
       print("Adding new item");
-      Flora item = Flora(name: itemText, type: FloraType.weed);
+      Flora item = Flora(name: itemText, type: type);
       items.insert(0, item);
       textController.clear();
     });

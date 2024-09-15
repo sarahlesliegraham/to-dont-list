@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:to_dont_list/objects/flora.dart';
 
 typedef ToDoListAddedCallback = Function(
-    String value, TextEditingController textConroller);
+    String value, FloraType type, TextEditingController textConroller);
 
 class ToDoDialog extends StatefulWidget {
   const ToDoDialog({
@@ -24,12 +25,13 @@ class _ToDoDialogState extends State<ToDoDialog> {
       textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.red);
 
   String valueText = "";
+  FloraType type = FloraType.unknown;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Item To Add'),
-      content: TextField(
+      content: Column(children: [TextField(
         onChanged: (value) {
           setState(() {
             valueText = value;
@@ -38,6 +40,19 @@ class _ToDoDialogState extends State<ToDoDialog> {
         controller: _inputController,
         decoration: const InputDecoration(hintText: "type something here"),
       ),
+      DropdownButton<FloraType>(
+        value: type, 
+        onChanged: (FloraType? newValue) {
+        setState((){
+          type = newValue!;
+        });
+      }, items: FloraType.values.map((FloraType classType){
+        return DropdownMenuItem<FloraType>(
+          value: classType, child: Text(classType.name));
+      }).toList())
+      ],
+      ),
+    
       actions: <Widget>[
         ElevatedButton(
           key: const Key("OKButton"),
@@ -45,7 +60,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
           child: const Text('OK'),
           onPressed: () {
             setState(() {
-              widget.onListAdded(valueText, _inputController);
+              widget.onListAdded(valueText, FloraType.garden, _inputController);
               Navigator.pop(context);
             });
           },

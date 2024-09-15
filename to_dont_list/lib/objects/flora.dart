@@ -3,14 +3,16 @@
 import 'package:flutter/material.dart';
 
 enum FloraType{
-  native(Colors.green),
-  garden(Colors.pink),
-  weed(Colors.brown),
+  native(Color.fromARGB(255, 113, 220, 116)),
+  garden(Color.fromARGB(255, 246, 137, 137)),
+  weed(Color.fromARGB(255, 195, 141, 121)),
+  unknown(Colors.grey),
   ;
 
   const FloraType(this.rgbColor);
 
   final Color rgbColor;
+
 }
 
 class Flora {
@@ -18,7 +20,7 @@ class Flora {
 
   final String name;
 
-  final FloraType type;
+  FloraType type;
 
   int numLocations = 1;
 
