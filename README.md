@@ -1,2 +1,2 @@
-# to-dont-list
-A broken list of things to do
+# concert-list
+A list to keep track of concerts
