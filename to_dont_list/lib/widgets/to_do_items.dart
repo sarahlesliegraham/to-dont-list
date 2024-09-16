@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:to_dont_list/objects/item.dart';
+import 'package:to_dont_list/objects/rating.dart';
+import 'package:to_dont_list/widgets/rating_dialog.dart';
+
 typedef ToDoListChangedCallback = Function(Item item, bool completed);
 typedef ToDoListRemovedCallback = Function(Item item);
 class ToDoListItem extends StatelessWidget {
@@ -29,6 +32,11 @@ class ToDoListItem extends StatelessWidget {
       decoration: TextDecoration.lineThrough,
     );
   }
+
+  void _handleNewRating(int starRating) {
+    Rating rating = Rating(stars: starRating);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -40,8 +48,14 @@ class ToDoListItem extends StatelessWidget {
               onDeleteItem(item);
             }
           : null,
-      leading: CircleAvatar(
-        backgroundColor: _getColor(context),
+      leading: FloatingActionButton(
+        onPressed: () {
+        showDialog(
+                  context: context,
+                  builder: (_) {
+                    return RatingDialog(onRatingAdded: _handleNewRating);
+                  });
+        },
         child: Text(item.abbrev()),
       ),
       title: Text(
