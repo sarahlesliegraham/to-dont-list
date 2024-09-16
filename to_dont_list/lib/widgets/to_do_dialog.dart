@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 typedef ToDoListAddedCallback = Function(
     String value, String value2, TextEditingController textConroller, TextEditingController textController2);
 
@@ -30,25 +31,27 @@ class _ToDoDialogState extends State<ToDoDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Item To Add'),
+      title: const Text('Add Concert'),
       content: Column( children : [TextField(
+        key: const Key("ConcertField"),
         onChanged: (value) {
           setState(() {
             valueText = value;
           });
         },
         controller: _inputController,
-        decoration: const InputDecoration(hintText: "type something here"),
+        decoration: const InputDecoration(hintText: "Artist Name"),
       ),
       
       TextField(
+        key: const Key("DateField"),
         onChanged: (value2) {
           setState(() {
             valueText2 = value2;
           });
         },
         controller: _inputController2,
-        decoration: const InputDecoration(hintText: "type something else here"),
+        decoration: const InputDecoration(hintText: "Concert Date"),
       ),
       ]
       ),

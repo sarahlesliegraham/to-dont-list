@@ -73,13 +73,18 @@ void main() {
     await tester.pump(); // Pump after every action to rebuild the widgets
     expect(find.text("hi"), findsNothing);
 
-    await tester.enterText(find.byType(TextField), 'hi');
+    await tester.enterText(find.byKey(const Key('ConcertField')), 'band');
     await tester.pump();
-    expect(find.text("hi"), findsOneWidget);
+    expect(find.text("band"), findsOneWidget);
+
+    await tester.enterText(find.byKey(const Key('DateField')), 'day');
+    await tester.pump();
+    expect(find.text("day"), findsOneWidget);
 
     await tester.tap(find.byKey(const Key("OKButton")));
     await tester.pump();
-    expect(find.text("hi"), findsOneWidget);
+    expect(find.text("band"), findsOneWidget);
+    expect(find.text("day"), findsOneWidget);
 
     final listItemFinder = find.byType(ToDoListItem);
 
