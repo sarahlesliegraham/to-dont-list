@@ -33,7 +33,19 @@ class _RatingDialogState extends State<RatingDialog> {
         items: StarRating.values.map((StarRating classType){
         return DropdownMenuItem<StarRating>(
         value: classType, child: Text(classType.name));
-        }).toList())
+        }).toList()
+        ),
+      actions: <Widget>[
+        ElevatedButton(
+          key: const Key("CancelButton"),
+          child: const Text('Cancel'),
+          onPressed: () {
+            setState(() {
+              Navigator.pop(context);
+            });
+          },
+        )
+      ],
     
     );
   }

@@ -1,12 +1,14 @@
 // Data class to keep the string and have an abbreviation function
 
 class Item {
-  const Item({required this.name, required this.name2,});
+  Item({required this.name, required this.name2, required this.rating});
 
   final String name;
   final String name2;
+  int rating;
 
-  String abbrev() {
-    return name.substring(0, 1);
+
+  int abbrev() {
+    return rating;
   }
 }

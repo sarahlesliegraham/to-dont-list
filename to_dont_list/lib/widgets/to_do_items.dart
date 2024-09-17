@@ -33,8 +33,10 @@ class ToDoListItem extends StatelessWidget {
     );
   }
 
+
   void _handleNewRating(int starRating) {
-    Rating rating = Rating(stars: starRating);
+    item.rating = starRating;
+
   }
 
   @override
@@ -56,7 +58,7 @@ class ToDoListItem extends StatelessWidget {
                     return RatingDialog(onRatingAdded: _handleNewRating);
                   });
         },
-        child: Text(item.abbrev()),
+        child: Text(item.abbrev().toString()),
       ),
       title: Text(
         item.name,

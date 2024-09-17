@@ -12,7 +12,7 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  final List<Item> items = [const Item(name: "Really Cool Band", name2: "03/01/2024")];
+  final List<Item> items = [Item(name: "Really Cool Band", name2: "03/01/2024", rating: 0)];
   final _itemSet = <Item>{};
 
   void _handleListChanged(Item item, bool completed) {
@@ -46,7 +46,8 @@ class _ToDoListState extends State<ToDoList> {
   void _handleNewItem(String itemText, String itemText2, TextEditingController textController, TextEditingController textController2) {
     setState(() {
       print("Adding new item");
-      Item item = Item(name: itemText, name2: itemText2);
+      int stars = 0;
+      Item item = Item(name: itemText, name2: itemText2, rating: stars);
       items.insert(0, item);
       textController.clear();
       textController2.clear();
@@ -61,7 +62,7 @@ class _ToDoListState extends State<ToDoList> {
         ),
         body: ListView(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          children: items.map((item) {
+          children: items.map((item,) {
             return ToDoListItem(
               item: item,
               completed: _itemSet.contains(item),
