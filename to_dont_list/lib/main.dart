@@ -17,6 +17,7 @@ class _ToDoListState extends State<ToDoList> {
   final List<Classes> items = [Classes(name: "Food", color: FoodGroup.vegetable)];
   final _itemSet = <Classes>{};
 
+
   //add a final count for servings
   final Map<FoodGroup, int> foodGroupCounts = {
     for (var group in FoodGroup.values) group: 0
@@ -93,12 +94,6 @@ class _ToDoListState extends State<ToDoList> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Servings  Food List'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.calculate),
-              onPressed: _showTotalDialog,
-            )
-          ],
         ),
         body: ListView(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -111,15 +106,30 @@ class _ToDoListState extends State<ToDoList> {
             );
           }).toList(),
         ),
-        floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () {
-              showDialog(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 10.0), 
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+          children: [
+            FloatingActionButton(
+              onPressed: _showTotalDialog,
+              child: const Text('Total'),
+            ),
+            FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () {
+                showDialog(
                   context: context,
                   builder: (_) {
                     return ToDoDialog(onListAdded: _handleNewItem);
                   });
-            }));
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
