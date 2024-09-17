@@ -14,8 +14,13 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  final List<Classes> items = [Classes(name: "Math", color: FoodGroup.grey)];
+  final List<Classes> items = [Classes(name: "Food", color: FoodGroup.vegetable)];
   final _itemSet = <Classes>{};
+
+  //add a final count for servings
+  final Map<FoodGroup, int> foodGroupCounts = {
+    for (var group in FoodGroup.values) group: 0
+  };
 
   void _handleListChanged(Classes item, bool completed) {
     setState(() {
@@ -30,10 +35,12 @@ class _ToDoListState extends State<ToDoList> {
         print("Completing");
         _itemSet.add(item);
         items.add(item);
+        foodGroupCounts[item.color] = foodGroupCounts[item.color]! + 1;
       } else {
         print("Making Undone");
         _itemSet.remove(item);
         items.insert(0, item);
+        foodGroupCounts[item.color] = foodGroupCounts[item.color]! - 1;
       }
     });
   }
@@ -42,6 +49,7 @@ class _ToDoListState extends State<ToDoList> {
     setState(() {
       print("Deleting item");
       items.remove(item);
+      foodGroupCounts[item.color] = foodGroupCounts[item.color]! - 1;
     });
   }
 
@@ -51,15 +59,46 @@ class _ToDoListState extends State<ToDoList> {
       //changed this to get rid of the constant
       Classes item = Classes(name: itemText, color: food);
       items.insert(0, item);
+      foodGroupCounts[food] = foodGroupCounts[food]! + 1;
       textController.clear();
     });
+  }
+
+  void _showTotalDialog() {
+    showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: const Text('Total Servings'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: foodGroupCounts.entries.map((entry) {
+                return Text('${entry.key.name}: ${entry.value}');
+              }).toList(),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('To Do List'),
+          title: const Text('Servings  Food List'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.calculate),
+              onPressed: _showTotalDialog,
+            )
+          ],
         ),
         body: ListView(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -86,7 +125,7 @@ class _ToDoListState extends State<ToDoList> {
 
 void main() {
   runApp(const MaterialApp(
-    title: 'To Do List',
+    title: 'Food List',
     home: ToDoList(),
   ));
 }
