@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:to_dont_list/objects/classes.dart';
 
 typedef ToDoListAddedCallback = Function(
-    String value, TextEditingController textConroller);
+    String value, FoodGroup food ,TextEditingController textConroller);
 
 class ToDoDialog extends StatefulWidget {
   const ToDoDialog({
@@ -24,12 +25,13 @@ class _ToDoDialogState extends State<ToDoDialog> {
       textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.red);
 
   String valueText = "";
+  FoodGroup? food;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Item To Add'),
-      content: TextField(
+      content: Column(children:[TextField(
         onChanged: (value) {
           setState(() {
             valueText = value;
@@ -38,6 +40,20 @@ class _ToDoDialogState extends State<ToDoDialog> {
         controller: _inputController,
         decoration: const InputDecoration(hintText: "type something here"),
       ),
+      DropdownButton<FoodGroup>(
+        value: food,
+        onChanged: (FoodGroup? newValue) {
+          setState(() {
+            food = newValue!;
+          });
+        },
+        items: FoodGroup.values.map((FoodGroup classType) {
+          return DropdownMenuItem<FoodGroup> (
+            value: classType, child: Text(classType.name));
+        }).toList())
+      ],
+      ),
+      
       actions: <Widget>[
         ElevatedButton(
           //changed OkButton to OKButton
@@ -46,7 +62,11 @@ class _ToDoDialogState extends State<ToDoDialog> {
           child: const Text('OK'),
           onPressed: () {
             setState(() {
-              widget.onListAdded(valueText, _inputController);
+              widget.onListAdded(
+                valueText,
+                food ?? FoodGroup.red, // Use selected food or default to FoodGroup.red
+                _inputController,
+              );
               Navigator.pop(context);
             });
           },
