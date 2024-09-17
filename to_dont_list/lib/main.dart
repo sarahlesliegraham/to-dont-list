@@ -1,8 +1,10 @@
 // Started with https://docs.flutter.dev/development/ui/widgets-intro
 import 'package:flutter/material.dart';
+import 'package:to_dont_list/objects/classes.dart';
 import 'package:to_dont_list/objects/item.dart';
 import 'package:to_dont_list/widgets/to_do_items.dart';
 import 'package:to_dont_list/widgets/to_do_dialog.dart';
+
 
 class ToDoList extends StatefulWidget {
   const ToDoList({super.key});
@@ -12,10 +14,10 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  final List<Item> items = [const Item(name: "add more todos")];
-  final _itemSet = <Item>{};
+  final List<Classes> items = [Classes(name: "Math", color: FoodGroup.grey)];
+  final _itemSet = <Classes>{};
 
-  void _handleListChanged(Item item, bool completed) {
+  void _handleListChanged(Classes item, bool completed) {
     setState(() {
       // When a user changes what's in the list, you need
       // to change _itemSet inside a setState call to
@@ -36,18 +38,18 @@ class _ToDoListState extends State<ToDoList> {
     });
   }
 
-  void _handleDeleteItem(Item item) {
+  void _handleDeleteItem(Classes item) {
     setState(() {
       print("Deleting item");
       items.remove(item);
     });
   }
 
-  void _handleNewItem(String itemText, TextEditingController textController) {
+  void _handleNewItem(String itemText, FoodGroup food, TextEditingController textController) {
     setState(() {
       print("Adding new item");
-      //edited this to remove constant
-      Item item = Item(name: itemText);
+      //changed this to get rid of the constant
+      Classes item = Classes(name: itemText, color: food);
       items.insert(0, item);
       textController.clear();
     });
@@ -62,8 +64,8 @@ class _ToDoListState extends State<ToDoList> {
         body: ListView(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           children: items.map((item) {
-            return ToDoListItem(
-              item: item,
+            return ClassListItem(
+              course: item,
               completed: _itemSet.contains(item),
               onListChanged: _handleListChanged,
               onDeleteItem: _handleDeleteItem,
