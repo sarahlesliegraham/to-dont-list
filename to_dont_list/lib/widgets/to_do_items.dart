@@ -1,38 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:to_dont_list/objects/classes.dart';
 import 'package:to_dont_list/objects/item.dart';
 
-typedef ToDoListChangedCallback = Function(Item item, bool completed);
-typedef ToDoListRemovedCallback = Function(Item item);
+typedef ToDoListChangedCallback = Function(Classes item, bool completed);
+typedef ToDoListRemovedCallback = Function(Classes item);
 
-class ToDoListItem extends StatelessWidget {
-  ToDoListItem(
-      {required this.item,
+
+
+class ClassListItem extends StatefulWidget {
+  ClassListItem(
+      {required this.course,
       required this.completed,
       required this.onListChanged,
       required this.onDeleteItem})
-      : super(key: ObjectKey(item));
+      : super(key: ObjectKey(course));
 
-  final Item item;
+  final Classes course;
   final bool completed;
 
   final ToDoListChangedCallback onListChanged;
   final ToDoListRemovedCallback onDeleteItem;
 
-  Color _getColor(BuildContext context) {
-    // The theme depends on the BuildContext because different
-    // parts of the tree can have different themes.
-    // The BuildContext indicates where the build is
-    // taking place and therefore which theme to use.
+  @override
+  State<ClassListItem> createState() => _ClassListItemState();
+}
 
-    return completed //
-        //try a change here (change color to be a more specific black
-        //? Colors.black
-        ? Colors.black54
-        : Theme.of(context).primaryColor;
-  }
+class _ClassListItemState extends State<ClassListItem> {
 
   TextStyle? _getTextStyle(BuildContext context) {
-    if (!completed) return null;
+    if (!widget.completed) return null;
 
     return const TextStyle(
       color: Colors.black54,
@@ -44,22 +40,28 @@ class ToDoListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        onListChanged(item, completed);
+        widget.onListChanged(widget.course, widget.completed);
       },
-      onLongPress: completed
+      onLongPress: widget.completed
           ? () {
-              onDeleteItem(item);
+              widget.onDeleteItem(widget.course);
             }
           : null,
-      leading: CircleAvatar(
-        backgroundColor: _getColor(context),
+      leading: ElevatedButton(
+        onPressed: () {
+            setState(() {
+              widget.course.increment();
+            });
+            
+        },
+        style:ElevatedButton.styleFrom(backgroundColor: widget.course.color.rgbcolor),
         //change this from item.name to item.abbrev
         //child: Text(item.name),
-        child: Text(item.abbrev()),
+        child: Text(widget.course.count.toString()),
       ),
       title: Text(
         //adjust this to driplay name instead of abbrev
-        item.name,
+        widget.course.name,
         style: _getTextStyle(context),
       ),
     );
