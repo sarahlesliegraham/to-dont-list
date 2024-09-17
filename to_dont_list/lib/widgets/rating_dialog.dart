@@ -37,10 +37,11 @@ class _RatingDialogState extends State<RatingDialog> {
         ),
       actions: <Widget>[
         ElevatedButton(
-          key: const Key("CancelButton"),
-          child: const Text('Cancel'),
+          key: const Key("OKButton"),
+          child: const Text('OK'),
           onPressed: () {
             setState(() {
+              widget.onRatingAdded(ratingValue.rating);
               Navigator.pop(context);
             });
           },

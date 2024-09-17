@@ -39,7 +39,9 @@ class ToDoListItem extends StatefulWidget {
 
 class _ToDoListItemState extends State<ToDoListItem> {
   void _handleNewRating(int starRating) {
-    item.rating = starRating;
+    setState(() {
+      widget.item.rating = starRating;
+    });
 
   }
   @override
@@ -61,7 +63,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
                     return RatingDialog(onRatingAdded: _handleNewRating);
                   });
         },
-        child: Text(widget.item.abbrev()),
+        child: Text(widget.item.abbrev().toString()),
       ),
       title: Text(
         widget.item.name,
