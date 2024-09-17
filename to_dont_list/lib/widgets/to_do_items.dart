@@ -5,7 +5,7 @@ import 'package:to_dont_list/widgets/rating_dialog.dart';
 
 typedef ToDoListChangedCallback = Function(Item item, bool completed);
 typedef ToDoListRemovedCallback = Function(Item item);
-class ToDoListItem extends StatelessWidget {
+class ToDoListItem extends StatefulWidget {
   ToDoListItem(
       {required this.item,
       required this.completed,
@@ -33,21 +33,24 @@ class ToDoListItem extends StatelessWidget {
     );
   }
 
+@override
+  State createState() => _ToDoListItemState();
+}
 
+class _ToDoListItemState extends State<ToDoListItem> {
   void _handleNewRating(int starRating) {
     item.rating = starRating;
 
   }
-
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        onListChanged(item, completed);
+        widget.onListChanged(widget.item, widget.completed);
       },
-      onLongPress: completed
+      onLongPress: widget.completed
           ? () {
-              onDeleteItem(item);
+              widget.onDeleteItem(widget.item);
             }
           : null,
       leading: FloatingActionButton(
@@ -58,15 +61,15 @@ class ToDoListItem extends StatelessWidget {
                     return RatingDialog(onRatingAdded: _handleNewRating);
                   });
         },
-        child: Text(item.abbrev().toString()),
+        child: Text(widget.item.abbrev()),
       ),
       title: Text(
-        item.name,
-        style: _getTextStyle(context),
+        widget.item.name,
+        style: widget._getTextStyle(context),
       ),
       subtitle: Text(
-        item.name2,
-        style: _getTextStyle(context),
+        widget.item.name2,
+        style: widget._getTextStyle(context),
       )
     );
   }
