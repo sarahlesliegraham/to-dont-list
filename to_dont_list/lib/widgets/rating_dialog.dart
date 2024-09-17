@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:to_dont_list/objects/rating.dart';
+
 
 typedef RatingAddedCallback = Function(
     int stars);
@@ -16,11 +18,23 @@ class RatingDialog extends StatefulWidget {
 }
 
 class _RatingDialogState extends State<RatingDialog> {
+  StarRating ratingValue = StarRating.one;
   @override
   Widget build(BuildContext context) {
-    return const AlertDialog(
-      title: Text('Rate The Concert:'),
-      content: Placeholder()
+    return AlertDialog(
+      title: const Text('Rate The Concert:'),
+      content: DropdownButton<StarRating>(
+        value: ratingValue,
+        onChanged: (StarRating? newValue){
+          setState((){
+            ratingValue = newValue!;
+            });
+        },
+        items: StarRating.values.map((StarRating classType){
+        return DropdownMenuItem<StarRating>(
+        value: classType, child: Text(classType.name));
+        }).toList())
+    
     );
   }
 }
