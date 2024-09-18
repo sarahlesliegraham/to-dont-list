@@ -65,6 +65,13 @@ class _ToDoListState extends State<ToDoList> {
     });
   }
 
+  //try increment, delete if need
+  void _incrementFoodGroupCount(FoodGroup foodGroup) {
+    setState(() {
+      foodGroupCounts[foodGroup] = foodGroupCounts[foodGroup]! + 1;
+    });
+  }
+
   void _showTotalDialog() {
     showDialog(
         context: context,
@@ -103,6 +110,7 @@ class _ToDoListState extends State<ToDoList> {
               completed: _itemSet.contains(item),
               onListChanged: _handleListChanged,
               onDeleteItem: _handleDeleteItem,
+              onIncrementFoodGroup: _incrementFoodGroupCount,
             );
           }).toList(),
         ),
