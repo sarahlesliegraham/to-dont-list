@@ -30,7 +30,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Item To Add'),
+      title: const Text('Add a Food'),
       content: Column(children:[TextField(
         onChanged: (value) {
           setState(() {
@@ -64,7 +64,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
             setState(() {
               widget.onListAdded(
                 valueText,
-                food ?? FoodGroup.red, // Use selected food or default to FoodGroup.red
+                food ?? FoodGroup.vegetable, 
                 _inputController,
               );
               Navigator.pop(context);
