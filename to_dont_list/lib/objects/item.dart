@@ -8,7 +8,7 @@ class Item {
   int rating;
 
 
-  int abbrev() {
+  int returnRating() {
     return rating;
   }
 }

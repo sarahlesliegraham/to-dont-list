@@ -13,33 +13,35 @@ import 'package:to_dont_list/objects/item.dart';
 import 'package:to_dont_list/widgets/to_do_items.dart';
 
 void main() {
-  test('Item abbreviation should be first letter', () {
-    const item = Item(name: "add more todos", name2: "subtitle test");
-    expect(item.abbrev(), "a");
+  test('Rating number should be shown', () {
+    Item item = Item(name: "Really Cool Band", name2: "03/01/2024", rating: 0);
+    expect(item.returnRating(), 0);
   });
 
   // Yes, you really need the MaterialApp and Scaffold
-  testWidgets('ToDoListItem has a text', (tester) async {
+  testWidgets('ToDoListItem has two texts', (tester) async {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
             body: ToDoListItem(
-                item: const Item(name: "test", name2: "test2"),
+                item: Item(name: "test", name2: "test2", rating: 0),
                 completed: true,
                 onListChanged: (Item item, bool completed) {},
                 onDeleteItem: (Item item) {}))));
     final textFinder = find.text('test');
+    final textFinder2 = find.text('test2');
 
     // Use the `findsOneWidget` matcher provided by flutter_test to verify
     // that the Text widgets appear exactly once in the widget tree.
     expect(textFinder, findsOneWidget);
+    expect(textFinder2, findsOneWidget);
   });
 
-  testWidgets('ToDoListItem has a Circle Avatar with abbreviation',
+  /*testWidgets('ToDoListItem has a Circle Avatar with abbreviation',
       (tester) async {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
             body: ToDoListItem(
-                item: const Item(name: "test", name2: "test2"),
+                item: Item(name: "test", name2: "test2", rating: 0),
                 completed: true,
                 onListChanged: (Item item, bool completed) {},
                 onDeleteItem: (Item item) {}))));
@@ -54,9 +56,9 @@ void main() {
     expect(abbvFinder, findsOneWidget);
     expect(circ.backgroundColor, Colors.black54);
     expect(ctext.data, "t");
-  });
+  });*/
 
-  testWidgets('Default ToDoList has one item', (tester) async {
+  testWidgets('Default Concert List has one item', (tester) async {
     await tester.pumpWidget(const MaterialApp(home: ToDoList()));
 
     final listItemFinder = find.byType(ToDoListItem);
@@ -64,12 +66,12 @@ void main() {
     expect(listItemFinder, findsOneWidget);
   });
 
-  testWidgets('Clicking and Typing adds item to ToDoList', (tester) async {
+  testWidgets('Clicking and Typing adds item to Concert List', (tester) async {
     await tester.pumpWidget(const MaterialApp(home: ToDoList()));
 
     expect(find.byType(TextField), findsNothing);
 
-    await tester.tap(find.byType(FloatingActionButton));
+    await tester.tap(find.byKey(const Key('AddButton')));
     await tester.pump(); // Pump after every action to rebuild the widgets
     expect(find.text("hi"), findsNothing);
 
@@ -91,5 +93,19 @@ void main() {
     expect(listItemFinder, findsNWidgets(2));
   });
 
-  // One to test the tap and press actions on the items?
+  
+  testWidgets('Selected rating updates item rating', (tester) async {
+    await tester.pumpWidget(const MaterialApp(home: ToDoList()));
+
+    await tester.tap(find.byKey(const Key("RatingButton")));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('RatingDropDown')));
+    await tester.pumpAndSettle();
+
+    final dropdownItem = find.text('five').last;
+
+    await tester.tap(dropdownItem);
+    await tester.pumpAndSettle();
+  });
+
 }

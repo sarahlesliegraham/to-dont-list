@@ -24,6 +24,7 @@ class _RatingDialogState extends State<RatingDialog> {
     return AlertDialog(
       title: const Text('Rate The Concert:'),
       content: DropdownButton<StarRating>(
+        key: const Key('RatingDropDown'),
         value: ratingValue,
         onChanged: (StarRating? newValue){
           setState((){

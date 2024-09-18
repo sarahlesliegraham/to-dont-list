@@ -56,6 +56,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
             }
           : null,
       leading: FloatingActionButton(
+        key: const Key("RatingButton"),
         onPressed: () {
         showDialog(
                   context: context,
@@ -63,7 +64,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
                     return RatingDialog(onRatingAdded: _handleNewRating);
                   });
         },
-        child: Text(widget.item.abbrev().toString()),
+        child: Text(widget.item.returnRating().toString()),
       ),
       title: Text(
         widget.item.name,

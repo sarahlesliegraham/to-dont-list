@@ -72,6 +72,7 @@ class _ToDoListState extends State<ToDoList> {
           }).toList(),
         ),
         floatingActionButton: FloatingActionButton(
+            key: const Key("AddButton"),
             child: const Icon(Icons.add),
             onPressed: () {
               showDialog(
