@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 enum FoodGroup{
-  red(Colors.red),
-  blue(Colors.blue),
-  brown(Colors.brown), 
-  black(Colors.black),
-  white(Colors.white),
-  grey(Colors.grey );
+  vegetable(Colors.green),
+  fruit(Color.fromARGB(255, 245, 121, 162)),
+  protein(Color.fromARGB(255, 194, 6, 0)), 
+  dairy(Colors.lightBlue),
+  carbs(Color.fromARGB(255, 255, 215, 16));
 
   const FoodGroup(this.rgbcolor);
 
