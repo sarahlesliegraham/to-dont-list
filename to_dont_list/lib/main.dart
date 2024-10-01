@@ -12,7 +12,7 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  final List<Flora> items = [Flora(name: "add more flora", type: FloraType.weed)];
+  final List<Flora> items = []; 
   final _itemSet = <Flora>{};
 
   void _handleListChanged(Flora item, bool completed) {
@@ -83,7 +83,7 @@ class _ToDoListState extends State<ToDoList> {
 
 void main() {
   runApp(const MaterialApp(
-    title: 'To Do List',
+    title: 'Flora List',
     home: ToDoList(),
   ));
 }

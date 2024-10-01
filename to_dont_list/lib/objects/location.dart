@@ -1,4 +1,4 @@
-//WIP
+/*WIP
 
 class Location {
   Location({required this.name});
@@ -14,4 +14,4 @@ class Location {
   String getNumOfFlora(){
     return numOfFlora.toString();
   }
-}
+}*/
