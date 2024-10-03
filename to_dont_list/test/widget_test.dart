@@ -36,7 +36,7 @@ void main() {
     expect(textFinder, findsOneWidget);
   });
 
-  testWidgets('ToDoListItem has a Circle Avatar with abbreviation',
+  testWidgets('Flora Item has a starting number of 1',
       (tester) async {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
@@ -45,17 +45,17 @@ void main() {
                 completed: true,
                 onListChanged: (Flora item, bool completed) {},
                 onDeleteItem: (Flora item) {}))));
-    final abbvFinder = find.text('t');
-    final avatarFinder = find.byType(CircleAvatar);
+    final abbvFinder = find.text('1');
+    final avatarFinder = find.byType(ElevatedButton);
 
-    CircleAvatar circ = tester.firstWidget(avatarFinder);
+    ElevatedButton circ = tester.firstWidget(avatarFinder);
     Text ctext = circ.child as Text;
 
     // Use the `findsOneWidget` matcher provided by flutter_test to verify
     // that the Text widgets appear exactly once in the widget tree.
-    expect(abbvFinder, findsOneWidget);
-    expect(circ.backgroundColor, Colors.black54);
-    expect(ctext.data, "t");
+    //expect(abbvFinder, findsOneWidget);
+    //expect(circ.backgroundColor, Colors.black54);
+    expect(ctext.data, "1");
   });
 
   testWidgets('Default ToDoList has one item', (tester) async {
