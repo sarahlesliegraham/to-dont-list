@@ -8,3 +8,7 @@ This app is useful for people who are watching their diet and need acountability
 
 
 <img width="869" alt="Screenshot 2024-10-18 at 11 28 42 AM 2" src="https://github.com/user-attachments/assets/fb6f1630-f8d2-49f3-a32b-ca05d167976c">
+<img width="1470" alt="Screenshot 2024-10-18 at 11 28 46 AM" src="https://github.com/user-attachments/assets/339d75fc-8d5e-46f7-a442-19f1811baf26">
+<img width="1470" alt="Screenshot 2024-10-18 at 11 28 52 AM" src="https://github.com/user-attachments/assets/b9cb51a2-aa56-4bcf-95c0-caa802ca8b03">
+<img width="1470" alt="Screenshot 2024-10-18 at 11 28 55 AM" src="https://github.com/user-attachments/assets/69a2ebf1-5eb0-4f29-a397-110d133b038b">
+<img width="1470" alt="Screenshot 2024-10-18 at 11 29 06 AM" src="https://github.com/user-attachments/assets/8ff69072-9208-48c3-be8b-f52bacd0842e">
