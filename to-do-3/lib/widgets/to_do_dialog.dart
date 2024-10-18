@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_dont_list/objects/classes.dart';
 
-<<<<<<< HEAD:to-do-3/lib/widgets/to_do_dialog.dart
 typedef FoodListAddedCallback = Function(
-=======
-typedef ToDoListAddedCallback = Function(
->>>>>>> d3734af0ef9df337042a52d446c486edc1547d24:to_dont_list/lib/widgets/to_do_dialog.dart
     String value, FoodGroup food ,TextEditingController textConroller);
 
 class FoodDialog extends StatefulWidget {
