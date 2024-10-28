@@ -14,7 +14,7 @@ import 'package:to_dont_list/widgets/to_do_items.dart';
 
 void main() {
   test('Rating number should be shown', () {
-    Item item = Item(name: "Really Cool Band", name2: "03/01/2024", rating: 0);
+    Item item = Item(name: "Really Cool Band", name2: "03/01/2024", name3: "12:00 PM", rating: 0);
     expect(item.returnRating(), 0);
   });
 
@@ -23,7 +23,7 @@ void main() {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
             body: ToDoListItem(
-                item: Item(name: "test", name2: "test2", rating: 0),
+                item: Item(name: "test", name2: "test2", name3: "test3",rating: 0),
                 completed: true,
                 onListChanged: (Item item, bool completed) {},
                 onDeleteItem: (Item item) {}))));

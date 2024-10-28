@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_dont_list/objects/rating.dart';
+import 'dart:math' as math;
 
 
 typedef RatingAddedCallback = Function(
@@ -52,3 +53,4 @@ class _RatingDialogState extends State<RatingDialog> {
     );
   }
 }
+
