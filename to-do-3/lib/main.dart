@@ -6,14 +6,14 @@ import 'package:to_dont_list/widgets/to_do_items.dart';
 import 'package:to_dont_list/widgets/to_do_dialog.dart';
 
 
-class ToDoList extends StatefulWidget {
-  const ToDoList({super.key});
+class FoodList extends StatefulWidget {
+  const FoodList({super.key});
 
   @override
-  State createState() => _ToDoListState();
+  State createState() => _FoodListState();
 }
 
-class _ToDoListState extends State<ToDoList> {
+class _FoodListState extends State<FoodList> {
   final List<Classes> items = [Classes(name: "Food", color: FoodGroup.vegetable)];
   final _itemSet = <Classes>{};
 
@@ -65,7 +65,7 @@ class _ToDoListState extends State<ToDoList> {
     });
   }
 
-  //try increment, delete if need
+  //added class here
   void _incrementFoodGroupCount(FoodGroup foodGroup) {
     setState(() {
       foodGroupCounts[foodGroup] = foodGroupCounts[foodGroup]! + 1;
@@ -130,7 +130,7 @@ class _ToDoListState extends State<ToDoList> {
                 showDialog(
                   context: context,
                   builder: (_) {
-                    return ToDoDialog(onListAdded: _handleNewItem);
+                    return FoodDialog(onListAdded: _handleNewItem);
                   });
               },
             ),
@@ -144,6 +144,6 @@ class _ToDoListState extends State<ToDoList> {
 void main() {
   runApp(const MaterialApp(
     title: 'Food List',
-    home: ToDoList(),
+    home: FoodList(),
   ));
 }

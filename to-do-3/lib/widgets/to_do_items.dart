@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:to_dont_list/objects/classes.dart';
 import 'package:to_dont_list/objects/item.dart';
 
-typedef ToDoListChangedCallback = Function(Classes item, bool completed);
-typedef ToDoListRemovedCallback = Function(Classes item);
+typedef FoodListChangedCallback = Function(Classes item, bool completed);
+typedef FoodListRemovedCallback = Function(Classes item);
 typedef IncrementFoodGroupCallback = void Function(FoodGroup foodGroup);
 
 
@@ -21,8 +21,8 @@ class ClassListItem extends StatefulWidget {
   final Classes course;
   final bool completed;
 
-  final ToDoListChangedCallback onListChanged;
-  final ToDoListRemovedCallback onDeleteItem;
+  final FoodListChangedCallback onListChanged;
+  final FoodListRemovedCallback onDeleteItem;
   final IncrementFoodGroupCallback onIncrementFoodGroup;
 
   @override
