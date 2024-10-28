@@ -75,6 +75,10 @@ class _ToDoListItemState extends State<ToDoListItem> {
         subtitle: Text(
           widget.item.name2,
           style: widget._getTextStyle(context),
+        ),
+        trailing: Text(
+          widget.item.name3,
+          style: widget._getTextStyle(context),
         ));
   }
 }
