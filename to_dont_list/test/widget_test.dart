@@ -16,8 +16,9 @@ void main() {
   test('Rating number should be shown', () {
     Item item = Item(
         name: "Really Cool Band",
-        name2: "03/01/2024",
-        name3: "Canes Ballroom",
+        name2: "Really Cool Venue",
+        name3: "03/01/2024",
+        name4: "12:00 PM",
         rating: 0);
     expect(item.returnRating(), 0);
   });
@@ -28,7 +29,11 @@ void main() {
         home: Scaffold(
             body: ToDoListItem(
                 item: Item(
-                    name: "test", name2: "test2", name3: "test3", rating: 0),
+                    name: "test",
+                    name2: "test2",
+                    name3: "test3",
+                    name4: "test4",
+                    rating: 0),
                 completed: true,
                 onListChanged: (Item item, bool completed) {},
                 onDeleteItem: (Item item) {}))));

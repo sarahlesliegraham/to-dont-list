@@ -15,7 +15,7 @@ class _ToDoListState extends State<ToDoList> {
   final List<Item> items = [
     Item(
         name: "Really Cool Band",
-        name2: "Canes",
+        name2: "Really Cool Venue",
         name3: "03/01/2024",
         name4: "12:00",
         rating: 0)
