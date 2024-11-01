@@ -15,8 +15,9 @@ class _ToDoListState extends State<ToDoList> {
   final List<Item> items = [
     Item(
         name: "Really Cool Band",
-        name2: "03/01/2024",
-        name3: "Canes Ballroom",
+        name2: "Canes",
+        name3: "03/01/2024",
+        name4: "12:00",
         rating: 0)
   ];
   final _itemSet = <Item>{};
@@ -53,6 +54,7 @@ class _ToDoListState extends State<ToDoList> {
       String itemText,
       String itemText2,
       String itemText3,
+      String itemText4,
       TextEditingController textController,
       TextEditingController textController2,
       TextEditingController textController3) {
@@ -60,10 +62,15 @@ class _ToDoListState extends State<ToDoList> {
       print("Adding new item");
       int stars = 0;
       Item item = Item(
-          name: itemText, name2: itemText2, name3: itemText3, rating: stars);
+          name: itemText,
+          name2: itemText2,
+          name3: itemText3,
+          name4: itemText4,
+          rating: stars);
       items.insert(0, item);
       textController.clear();
       textController2.clear();
+      textController3.clear();
     });
   }
 
