@@ -20,6 +20,7 @@ class _ToDoListState extends State<ToDoList> {
         name4: "12:00",
         rating: 0)
   ];
+
   final _itemSet = <Item>{};
 
   void _handleListChanged(Item item, bool completed) {
@@ -67,6 +68,7 @@ class _ToDoListState extends State<ToDoList> {
           name3: itemText3,
           name4: itemText4,
           rating: stars);
+
       items.insert(0, item);
       textController.clear();
       textController2.clear();

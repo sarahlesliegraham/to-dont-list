@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 typedef ToDoListAddedCallback = Function(
+
     String value,
     String date,
     String time,
@@ -8,6 +9,7 @@ typedef ToDoListAddedCallback = Function(
     TextEditingController textController,
     TextEditingController textController2,
     TextEditingController textController3);
+
 
 class ToDoDialog extends StatefulWidget {
   const ToDoDialog({
@@ -27,14 +29,15 @@ class _ToDoDialogState extends State<ToDoDialog> {
   final TextEditingController _inputController2 = TextEditingController();
   final TextEditingController _inputController3 = TextEditingController();
   final ButtonStyle yesStyle = ElevatedButton.styleFrom(
-      textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.green);
+    textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.green);
   final ButtonStyle noStyle = ElevatedButton.styleFrom(
-      textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.red);
+    textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.red);
 
   String artistName = "";
   String selectedDate = "Select Date";
   String selectedTime = "Select Time";
   String selectedVenue = "";
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +45,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
       title: const Text('Add Concert'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
+
         children: [
           TextField(
             key: const Key("ConcertField"),
@@ -63,6 +67,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
             controller: _inputController3,
             decoration: const InputDecoration(hintText: "Concert Venue"),
           ),
+
           const SizedBox(height: 20),
           Row(
             children: [
@@ -137,6 +142,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
                           _inputController,
                           _inputController2,
                           _inputController3);
+
                       Navigator.pop(context);
                     }
                   : null,
