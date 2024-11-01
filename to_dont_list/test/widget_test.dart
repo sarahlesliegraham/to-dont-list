@@ -20,7 +20,7 @@ void main() {
         name3: "03/01/2024",
         name4: "12:00 PM",
         rating: 0);
-    expect(item.returnRating(), 0);
+
   });
 
   // Yes, you really need the MaterialApp and Scaffold

@@ -7,10 +7,15 @@ enum StarRating {
 
   const StarRating(this.rating);
   final int rating;
+  int returnRating() {
+    return rating;
+  }
 }
 
 class Rating {
   const Rating({required this.stars});
 
   final int stars;
+
 }
+

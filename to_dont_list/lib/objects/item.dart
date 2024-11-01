@@ -8,9 +8,11 @@ class Item {
       required this.name4,
       required this.rating});
 
+
   final String name;
   final String name2;
   final String name3;
+
   final String name4;
   int rating;
 
