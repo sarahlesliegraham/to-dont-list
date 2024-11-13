@@ -22,8 +22,4 @@ class Classes {
   void increment() {
     count++;
   }
-
-  void calorieIncrement() {
-    calorie = calorie * count;
-  }
 }

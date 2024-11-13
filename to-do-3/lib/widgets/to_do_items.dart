@@ -5,6 +5,8 @@ import 'package:to_dont_list/objects/item.dart';
 typedef FoodListChangedCallback = Function(Classes item, bool completed);
 typedef FoodListRemovedCallback = Function(Classes item);
 typedef IncrementFoodGroupCallback = void Function(FoodGroup foodGroup);
+typedef IncrementFoodGroupCalorieCallback = void Function(
+    FoodGroup foodGroup, double calorie);
 
 class ClassListItem extends StatefulWidget {
   ClassListItem(
@@ -12,7 +14,8 @@ class ClassListItem extends StatefulWidget {
       required this.completed,
       required this.onListChanged,
       required this.onDeleteItem,
-      required this.onIncrementFoodGroup})
+      required this.onIncrementFoodGroup,
+      required this.onIncrementFoodGroupCalorie})
       : super(key: ObjectKey(course));
 
   final Classes course;
@@ -21,6 +24,7 @@ class ClassListItem extends StatefulWidget {
   final FoodListChangedCallback onListChanged;
   final FoodListRemovedCallback onDeleteItem;
   final IncrementFoodGroupCallback onIncrementFoodGroup;
+  final IncrementFoodGroupCalorieCallback onIncrementFoodGroupCalorie;
 
   @override
   State<ClassListItem> createState() => _ClassListItemState();
@@ -51,10 +55,11 @@ class _ClassListItemState extends State<ClassListItem> {
         onPressed: () {
           setState(() {
             widget.course.increment();
-            widget.course.calorieIncrement();
 
             //try adding change here
             widget.onIncrementFoodGroup(widget.course.color);
+            widget.onIncrementFoodGroupCalorie(
+                widget.course.color, widget.course.calorie);
           });
         },
         style: ElevatedButton.styleFrom(

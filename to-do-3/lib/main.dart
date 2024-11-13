@@ -61,7 +61,7 @@ class _FoodListState extends State<FoodList> {
     setState(() {
       print("Adding new item");
       Classes item = Classes(name: itemText, color: food, calorie: calorie);
-      items.insert(0, item); // Insert the new item at the beginning of the list
+      items.insert(0, item);
       foodGroupCounts[food] =
           foodGroupCounts[food]! + 1; // Update food group count
       foodGroupCalories[food] = foodGroupCalories[food]! +
@@ -73,6 +73,12 @@ class _FoodListState extends State<FoodList> {
   void _incrementFoodGroupCount(FoodGroup foodGroup) {
     setState(() {
       foodGroupCounts[foodGroup] = foodGroupCounts[foodGroup]! + 1;
+    });
+  }
+
+  void _incrementFoodGroupCalorie(FoodGroup foodGroup, double calorie) {
+    setState(() {
+      foodGroupCalories[foodGroup] = foodGroupCalories[foodGroup]! + calorie;
     });
   }
 
@@ -118,6 +124,7 @@ class _FoodListState extends State<FoodList> {
             onListChanged: _handleListChanged,
             onDeleteItem: _handleDeleteItem,
             onIncrementFoodGroup: _incrementFoodGroupCount,
+            onIncrementFoodGroupCalorie: _incrementFoodGroupCalorie,
           );
         }).toList(),
       ),
