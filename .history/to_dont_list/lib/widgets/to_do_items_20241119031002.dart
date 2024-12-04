@@ -74,11 +74,6 @@ class _FloraListItemState extends State<FloraListItem> {
         widget.flora.name,
         style: widget._getTextStyle(context),
       ),
-      trailing: IconButton(
-        icon: const Icon(Icons.delete),
-        key: const Key('Delete'),
-        onPressed: () => widget.onDeleteItem(widget.flora),
-      ),
     );
   }
 }

@@ -59,14 +59,14 @@ void main() {
   });
 
   testWidgets('Clicking "delete" icon deletes an item', (tester) async {
-    await tester.pumpWidget(const MaterialApp(home: ToDoList()));
-    await tester.tap(find.byType(FloatingActionButton));
-    await tester.pump(); // Pump after every action to rebuild the widgets
-    await tester.enterText(find.byType(TextField), 'hi');
-    await tester.pump();
-    await tester.tap(find.byKey(const Key("OKButton")));
-    await tester.pump();
-    await tester.tap(find.byKey(const Key("Delete")));
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: FloraListItem(
+                flora: Flora(name: "test", type: FloraType.weed),
+                completed: true,
+                onListChanged: (Flora item, bool completed) {},
+                onDeleteItem: (Flora item) {}))));
+    await tester.tap(find.byType(Icon));
     await tester.pump();
     expect(find.byType(FloraListItem), findsNothing);
   });

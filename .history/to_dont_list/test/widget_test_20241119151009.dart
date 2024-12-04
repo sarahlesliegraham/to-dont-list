@@ -66,7 +66,7 @@ void main() {
     await tester.pump();
     await tester.tap(find.byKey(const Key("OKButton")));
     await tester.pump();
-    await tester.tap(find.byKey(const Key("Delete")));
+    await tester.tap(find.byType(Icon));
     await tester.pump();
     expect(find.byType(FloraListItem), findsNothing);
   });
