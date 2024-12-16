@@ -29,7 +29,6 @@ class _ToDoListState extends State<ToDoList> {
     savedList.setStringList('list', spList);
   }
   loadData() {
-    print("cum");
     List<String> spList = savedList.getStringList("list") ?? [];
     items = spList.map((item) => Flora.fromMap(json.decode(item))).toList();
     setState(() {
