@@ -60,13 +60,19 @@ void main() {
 
   testWidgets('Clicking "delete" icon deletes an item', (tester) async {
     await tester.pumpWidget(const MaterialApp(home: ToDoList()));
+
+    expect(find.byType(TextField), findsNothing);
+
     await tester.tap(find.byType(FloatingActionButton));
     await tester.pump(); // Pump after every action to rebuild the widgets
+    expect(find.text("hi"), findsNothing);
+
     await tester.enterText(find.byType(TextField), 'hi');
     await tester.pump();
+
     await tester.tap(find.byKey(const Key("OKButton")));
     await tester.pump();
-    await tester.tap(find.byKey(const Key("Delete")));
+    await tester.tap(find.byType(Icon));
     await tester.pump();
     expect(find.byType(FloraListItem), findsNothing);
   });

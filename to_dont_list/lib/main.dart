@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:to_dont_list/objects/flora.dart';
 import 'package:to_dont_list/widgets/to_do_items.dart';
 import 'package:to_dont_list/widgets/to_do_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+
 
 class ToDoList extends StatefulWidget {
   const ToDoList({super.key});
@@ -12,8 +15,30 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  final List<Flora> items = [];
+  
+  List<Flora> items = []; 
   final _itemSet = <Flora>{};
+  late SharedPreferences savedList;
+  
+  getSharedPreferences() async {
+    savedList = await SharedPreferences.getInstance();
+    loadData();
+  }
+  saveData() {
+    List<String> spList = items.map((item) => json.encode(item.toMap())).toList();
+    savedList.setStringList('list', spList);
+  }
+  loadData() {
+    List<String> spList = savedList.getStringList("list") ?? [];
+    items = spList.map((item) => Flora.fromMap(json.decode(item))).toList();
+    setState(() {
+});
+  }
+  @override
+  void initState() {
+    getSharedPreferences();
+    super.initState();
+  }
 
   void _handleListChanged(Flora item, bool completed) {
     setState(() {
@@ -40,6 +65,7 @@ class _ToDoListState extends State<ToDoList> {
     setState(() {
       print("Deleting item");
       items.remove(item);
+      saveData();
     });
   }
 
@@ -54,8 +80,11 @@ class _ToDoListState extends State<ToDoList> {
           type: itemType);
       items.insert(0, item);
       textController.clear();
+      saveData();
     });
   }
+  @override
+  
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +116,7 @@ class _ToDoListState extends State<ToDoList> {
 }
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MaterialApp(
     title: 'Flora List',
     home: ToDoList(),
