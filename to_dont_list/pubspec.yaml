@@ -17,3 +17,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - lib/pictures/garden.jpg
+    - lib/pictures/native.jpg
+    - lib/pictures/weed.jpg
+    - lib/pictures/unknown.jpg

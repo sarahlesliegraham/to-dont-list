@@ -23,7 +23,6 @@ class _ToDoDialogState extends State<ToDoDialog> {
       textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.green);
   final ButtonStyle noStyle = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.red);
-
   String valueText = "";
   FloraType type = FloraType.unknown;
 
@@ -31,28 +30,30 @@ class _ToDoDialogState extends State<ToDoDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Item To Add'),
-      content: Column(children: [TextField(
-        onChanged: (value) {
-          setState(() {
-            valueText = value;
-          });
-        },
-        controller: _inputController,
-        decoration: const InputDecoration(hintText: "type something here"),
+      content: Column(
+        children: [
+          TextField(
+            onChanged: (value) {
+              setState(() {
+                valueText = value;
+              });
+            },
+            controller: _inputController,
+            decoration: const InputDecoration(hintText: "type something here"),
+          ),
+          DropdownButton<FloraType>(
+              value: type,
+              onChanged: (FloraType? newValue) {
+                setState(() {
+                  type = newValue!;
+                });
+              },
+              items: FloraType.values.map((FloraType type) {
+                return DropdownMenuItem<FloraType>(
+                    value: type, child: Text(type.name));
+              }).toList())
+        ],
       ),
-      DropdownButton<FloraType>(
-        value: type, 
-        onChanged: (FloraType? newValue) {
-        setState((){
-          type = newValue!;
-        });
-      }, items: FloraType.values.map((FloraType classType){
-        return DropdownMenuItem<FloraType>(
-          value: classType, child: Text(classType.name));
-      }).toList())
-      ],
-      ),
-    
       actions: <Widget>[
         ElevatedButton(
           key: const Key("OKButton"),
@@ -60,7 +61,8 @@ class _ToDoDialogState extends State<ToDoDialog> {
           child: const Text('OK'),
           onPressed: () {
             setState(() {
-              widget.onListAdded(valueText, FloraType.garden, _inputController);
+              widget.onListAdded(valueText, type, _inputController);
+
               Navigator.pop(context);
             });
           },
@@ -76,7 +78,6 @@ class _ToDoDialogState extends State<ToDoDialog> {
               onPressed: value.text.isNotEmpty
                   ? () {
                       setState(() {
-                        
                         Navigator.pop(context);
                       });
                     }

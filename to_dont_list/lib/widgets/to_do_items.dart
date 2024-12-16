@@ -1,10 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:to_dont_list/objects/flora.dart';
 
-
 typedef ToDoListChangedCallback = Function(Flora item, bool completed);
 typedef ToDoListRemovedCallback = Function(Flora item);
-
 
 class FloraListItem extends StatefulWidget {
   FloraListItem(
@@ -45,13 +45,13 @@ class FloraListItem extends StatefulWidget {
 }
 
 class _FloraListItemState extends State<FloraListItem> {
-  
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
         //onListChanged(item, false);
         //item.addNumLocation();
+        widget.onListChanged(widget.flora, widget.completed);
       },
       onLongPress: widget.completed
           ? () {
@@ -59,20 +59,32 @@ class _FloraListItemState extends State<FloraListItem> {
             }
           : null,
       leading: ElevatedButton(
-        onPressed:() {
+        onPressed: () {
           setState(() {
             widget.flora.addNumLocation();
           });
         },
-        style: ElevatedButton.styleFrom(backgroundColor: widget.flora.type.rgbColor),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: widget.flora.type.rgbColor),
         //backgroundColor: _getColor(context),
-        child: Text (widget.flora.getNumLocations()),
-         
-         //title and circle avatar child were switched around
+        child: Text(widget.flora.getNumLocations()),
+
+        //title and circle avatar child were switched around
       ),
-      title: Text(
-        widget.flora.name,
-        style: widget._getTextStyle(context),
+      title: Row(
+        children: [
+          Text(widget.flora.name),
+          Image.asset(
+            widget.flora.type.imagePath,
+            height: 100,
+            width: 100,
+          ),
+        ],
+      ),
+      trailing: IconButton(
+        icon: const Icon(Icons.delete),
+        key: const Key('Delete'),
+        onPressed: () => widget.onDeleteItem(widget.flora),
       ),
     );
   }
