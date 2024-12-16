@@ -8,10 +8,13 @@ enum FloraType{
   weed(Color.fromARGB(255, 195, 141, 121)),
   unknown(Colors.grey),
   ;
+  
 
   const FloraType(this.rgbColor);
 
   final Color rgbColor;
+
+  
 
 }
 
@@ -30,6 +33,18 @@ class Flora {
 
   void addNumLocation(){
     numLocations ++;
+  }
+  Flora.fromMap(Map map) :
+    this.name = map["name"],
+    this.type = FloraType.garden,
+    this.numLocations = map["numlocation"];
+    
+  Map toMap() {
+    return {
+      "name": this.name,
+      "type": this.type.name,
+      "numlocation": this.numLocations,
+    };
   }
 }
 
